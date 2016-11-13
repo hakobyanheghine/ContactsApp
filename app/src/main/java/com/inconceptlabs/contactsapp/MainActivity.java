@@ -2,13 +2,13 @@ package com.inconceptlabs.contactsapp;
 
 import android.Manifest;
 import android.content.pm.PackageManager;
-import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.inconceptlabs.contactsapp.fragment.ContactDetailsFragment;

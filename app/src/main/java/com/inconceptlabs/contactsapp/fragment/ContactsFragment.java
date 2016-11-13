@@ -44,7 +44,11 @@ public class ContactsFragment extends Fragment implements LoaderManager.LoaderCa
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        loadContacts();
+        if (ContactsAppManager.getInstance().isContactDataLoaded) {
+            contactsAdapter.notifyDataSetChanged();
+        } else {
+            loadContacts();
+        }
     }
 
     @Override
@@ -59,6 +63,13 @@ public class ContactsFragment extends Fragment implements LoaderManager.LoaderCa
 
 
         return rootView;
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+
+        contactsAdapter = null;
     }
 
     public void loadContacts() {
@@ -87,6 +98,7 @@ public class ContactsFragment extends Fragment implements LoaderManager.LoaderCa
                 ContactsAppManager.getInstance().contacts.add(contactData);
             } while (cursor.moveToNext());
 
+            ContactsAppManager.getInstance().isContactDataLoaded = true;
             contactsAdapter.notifyDataSetChanged();
         }
     }

@@ -67,11 +67,6 @@ public class ContactDetailsFragment extends Fragment implements LoaderManager.Lo
         return rootView;
     }
 
-    @Override
-    public void onStart() {
-        super.onStart();
-    }
-
     public void setSelectedContactPosition(int position) {
         currentPosition = position;
         loadContactDetails();

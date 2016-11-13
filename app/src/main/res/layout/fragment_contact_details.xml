@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:textSize="14sp"
-        android:text="@string/contact_name"
+        android:text="@string/contact_name_default"
         android:gravity="center"/>
 
     <TextView
@@ -22,6 +22,6 @@
         android:layout_marginTop="10dp"
         android:layout_below="@id/fragment_contact_details_name_txt"
         android:textSize="14sp"
-        android:text="@string/contact_phone"
+        android:text="@string/contact_phone_default"
         android:gravity="center"/>
 </RelativeLayout>
