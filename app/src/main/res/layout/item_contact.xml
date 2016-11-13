@@ -19,6 +19,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
         android:layout_alignWithParentIfMissing="true"
         android:layout_toRightOf="@id/item_contact_img"
         android:ellipsize="end"
@@ -26,17 +27,5 @@
         android:text="@string/app_name"
         android:textSize="16sp"/>
 
-    <TextView
-        android:id="@+id/item_contact_desc_txt"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_below="@id/item_contact_name_txt"
-        android:layout_toRightOf="@id/item_contact_img"
-        android:ellipsize="end"
-        android:gravity="center_vertical"
-        android:text="@string/app_name"
-        android:textSize="14sp"/>
 
 </RelativeLayout>

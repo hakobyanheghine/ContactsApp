@@ -41,7 +41,6 @@ public class ContactsAdapter  extends RecyclerView.Adapter<ContactsAdapter.Conta
         ContactData contactData = contacts.get(position);
 
         holder.contactNameTxt.setText(contactData.contactName);
-        holder.contactDescriptionTxt.setText(contactData.contactDescription);
 
         View.OnClickListener listener = new View.OnClickListener() {
             @Override
@@ -53,7 +52,6 @@ public class ContactsAdapter  extends RecyclerView.Adapter<ContactsAdapter.Conta
 
         holder.contactImg.setOnClickListener(listener);
         holder.contactNameTxt.setOnClickListener(listener);
-        holder.contactDescriptionTxt.setOnClickListener(listener);
     }
 
     @Override
@@ -65,14 +63,12 @@ public class ContactsAdapter  extends RecyclerView.Adapter<ContactsAdapter.Conta
 
         public ImageView contactImg;
         public TextView contactNameTxt;
-        public TextView contactDescriptionTxt;
 
         public ContactsViewHolder(View itemView) {
             super(itemView);
 
             contactImg = (ImageView) itemView.findViewById(R.id.item_contact_img);
             contactNameTxt = (TextView) itemView.findViewById(R.id.item_contact_name_txt);
-            contactDescriptionTxt = (TextView) itemView.findViewById(R.id.item_contact_desc_txt);
         }
     }
 }

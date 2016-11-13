@@ -44,7 +44,7 @@ public class ContactsFragment extends Fragment implements LoaderManager.LoaderCa
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        startLoadingContacts();
+        loadContacts();
     }
 
     @Override
@@ -54,14 +54,14 @@ public class ContactsFragment extends Fragment implements LoaderManager.LoaderCa
         RecyclerView recyclerView = (RecyclerView) rootView.findViewById(R.id.fragment_contacts_list);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
-        contactsAdapter = new ContactsAdapter(ContactsAppManager.getInstance().contactDatas, (OnContactClickListener) getActivity());
+        contactsAdapter = new ContactsAdapter(ContactsAppManager.getInstance().contacts, (OnContactClickListener) getActivity());
         recyclerView.setAdapter(contactsAdapter);
 
 
         return rootView;
     }
 
-    public void startLoadingContacts() {
+    public void loadContacts() {
         if (ContactsAppManager.getInstance().isReadContactsPermissionGranted) {
             getLoaderManager().initLoader(0, null, this);
         }
@@ -84,7 +84,7 @@ public class ContactsFragment extends Fragment implements LoaderManager.LoaderCa
         if (cursor.moveToFirst()) {
             do {
                 ContactData contactData = new ContactData(cursor);
-                ContactsAppManager.getInstance().contactDatas.add(contactData);
+                ContactsAppManager.getInstance().contacts.add(contactData);
             } while (cursor.moveToNext());
 
             contactsAdapter.notifyDataSetChanged();

@@ -2,6 +2,7 @@ package com.inconceptlabs.contactsapp;
 
 import android.Manifest;
 import android.content.pm.PackageManager;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
@@ -50,7 +51,7 @@ public class MainActivity extends FragmentActivity implements OnContactClickList
         ContactDetailsFragment contactDetailsFragment = (ContactDetailsFragment) getSupportFragmentManager().findFragmentById(R.id.contact_details_fragment);
 
         if (contactDetailsFragment != null) {
-            contactDetailsFragment.setContactDetails(position);
+            contactDetailsFragment.setSelectedContactPosition(position);
         } else {
             ContactDetailsFragment newContactDetailsFragment = new ContactDetailsFragment();
             Bundle args = new Bundle();
@@ -73,7 +74,7 @@ public class MainActivity extends FragmentActivity implements OnContactClickList
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     ContactsAppManager.getInstance().isReadContactsPermissionGranted = true;
                     if (contactsFragment != null) {
-                        contactsFragment.startLoadingContacts();
+                        contactsFragment.loadContacts();
                     }
                 } else {
                     Toast.makeText(this, "Please, grant this permission to continue", Toast.LENGTH_LONG).show();

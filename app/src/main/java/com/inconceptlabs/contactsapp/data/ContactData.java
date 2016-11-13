@@ -12,8 +12,9 @@ public class ContactData {
     public String contactId;
     public String contactLookUpKey;
     public String contactName;
-    public String contactDescription;
     public String contactPhotoUri;
+
+    public String contactPhoneNumber;
 
     public ContactData() {
 
@@ -24,6 +25,5 @@ public class ContactData {
         contactLookUpKey = cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts.LOOKUP_KEY));
         contactName = cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME_PRIMARY));
         contactPhotoUri = cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts.PHOTO_THUMBNAIL_URI));
-        contactDescription = "";
     }
 }
