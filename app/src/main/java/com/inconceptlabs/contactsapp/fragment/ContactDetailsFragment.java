@@ -3,6 +3,7 @@ package com.inconceptlabs.contactsapp.fragment;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.provider.ContactsContract;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
@@ -52,6 +53,13 @@ public class ContactDetailsFragment extends Fragment implements LoaderManager.Lo
         }
 
         loadContactDetails();
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        setRetainInstance(true);
     }
 
     @Override

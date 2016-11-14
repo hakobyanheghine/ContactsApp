@@ -27,5 +27,5 @@ public class ContactsAppManager {
     public boolean isReadContactsPermissionGranted;
     public ArrayList<ContactData> contacts = new ArrayList<>();
 
-    public boolean isContactDataLoaded;
+    public boolean areContactsLoaded;
 }

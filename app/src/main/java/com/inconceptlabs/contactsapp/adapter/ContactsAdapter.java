@@ -17,7 +17,7 @@ import java.util.ArrayList;
  * Created by heghine on 11/13/16.
  */
 
-public class ContactsAdapter  extends RecyclerView.Adapter<ContactsAdapter.ContactsViewHolder> {
+public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.ContactsViewHolder> {
 
     private ArrayList<ContactData> contacts;
 

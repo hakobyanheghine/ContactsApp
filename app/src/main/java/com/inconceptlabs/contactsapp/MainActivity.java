@@ -8,7 +8,6 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
-import android.util.Log;
 import android.widget.Toast;
 
 import com.inconceptlabs.contactsapp.fragment.ContactDetailsFragment;
@@ -19,8 +18,6 @@ import com.inconceptlabs.contactsapp.util.OnContactClickListener;
 public class MainActivity extends FragmentActivity implements OnContactClickListener {
 
     private static final int PERMISSIONS_REQUEST_READ_CONTACTS = 1;
-
-    private ContactsFragment contactsFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +35,7 @@ public class MainActivity extends FragmentActivity implements OnContactClickList
                 return;
             }
 
-            contactsFragment = new ContactsFragment();
+            ContactsFragment contactsFragment = new ContactsFragment();
             contactsFragment.setArguments(getIntent().getExtras());
             getSupportFragmentManager().beginTransaction()
                     .add(R.id.fragment_container, contactsFragment)
@@ -50,7 +47,7 @@ public class MainActivity extends FragmentActivity implements OnContactClickList
     public void onItemClick(int position) {
         ContactDetailsFragment contactDetailsFragment = (ContactDetailsFragment) getSupportFragmentManager().findFragmentById(R.id.contact_details_fragment);
 
-        if (contactDetailsFragment != null) {
+        if (contactDetailsFragment != null && contactDetailsFragment.isInLayout()) {
             contactDetailsFragment.setSelectedContactPosition(position);
         } else {
             ContactDetailsFragment newContactDetailsFragment = new ContactDetailsFragment();
@@ -73,6 +70,7 @@ public class MainActivity extends FragmentActivity implements OnContactClickList
                 // If request is cancelled, the result arrays are empty.
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     ContactsAppManager.getInstance().isReadContactsPermissionGranted = true;
+                    ContactsFragment contactsFragment = (ContactsFragment) getSupportFragmentManager().findFragmentById(R.id.fragment_container);
                     if (contactsFragment != null) {
                         contactsFragment.loadContacts();
                     }

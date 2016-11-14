@@ -44,9 +44,7 @@ public class ContactsFragment extends Fragment implements LoaderManager.LoaderCa
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        if (ContactsAppManager.getInstance().isContactDataLoaded) {
-            contactsAdapter.notifyDataSetChanged();
-        } else {
+        if (!ContactsAppManager.getInstance().areContactsLoaded) {
             loadContacts();
         }
     }
@@ -92,19 +90,19 @@ public class ContactsFragment extends Fragment implements LoaderManager.LoaderCa
 
     @Override
     public void onLoadFinished(Loader<Cursor> loader, Cursor cursor) {
-        if (cursor.moveToFirst()) {
-            do {
-                ContactData contactData = new ContactData(cursor);
-                ContactsAppManager.getInstance().contacts.add(contactData);
-            } while (cursor.moveToNext());
-
-            ContactsAppManager.getInstance().isContactDataLoaded = true;
-            contactsAdapter.notifyDataSetChanged();
+        if (!ContactsAppManager.getInstance().areContactsLoaded) {
+            if (cursor.moveToFirst()) {
+                do {
+                    ContactData contactData = new ContactData(cursor);
+                    ContactsAppManager.getInstance().contacts.add(contactData);
+                } while (cursor.moveToNext());
+                ContactsAppManager.getInstance().areContactsLoaded = true;
+                contactsAdapter.notifyDataSetChanged();
+            }
         }
     }
 
     @Override
     public void onLoaderReset(Loader<Cursor> loader) {
-
     }
 }
